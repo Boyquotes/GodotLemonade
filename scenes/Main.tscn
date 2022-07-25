@@ -1,0 +1,282 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://fonts/LEMONMILK-Regular.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Main.gd" type="Script" id=2]
+[ext_resource path="res://sprites/sunny.png" type="Texture" id=3]
+[ext_resource path="res://sprites/sunnydry.png" type="Texture" id=4]
+[ext_resource path="res://sprites/cloudy.png" type="Texture" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 55
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 18
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 18
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 18
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 18
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 15
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 20
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.733333, 0.733333, 0.733333, 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+
+[sub_resource type="DynamicFont" id=12]
+size = 15
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="UI" type="Control" parent="."]
+margin_right = 800.0
+margin_bottom = 600.0
+
+[node name="startUp" type="ItemList" parent="UI"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -399.0
+margin_top = 1.0
+margin_right = 401.0
+margin_bottom = 374.0
+custom_styles/bg = SubResource( 2 )
+
+[node name="startLbl" type="Label" parent="UI/startUp"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -266.5
+margin_right = 266.5
+margin_bottom = 74.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Lemonade Stand"
+
+[node name="infoLbl" type="Label" parent="UI/startUp"]
+anchor_left = 0.5
+anchor_top = 0.371
+anchor_right = 0.5
+anchor_bottom = 0.371
+margin_left = -263.0
+margin_top = -68.383
+margin_right = 263.0
+margin_bottom = 48.617
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Hi! welcome to lemonsville, california!
+in this small town, you are in charge of running your own lemonade stand. you will have to calculate how much glasses to make, advertising, and how much to sell each glass for.."
+autowrap = true
+
+[node name="dayContainer" type="ItemList" parent="UI"]
+margin_right = 800.0
+margin_bottom = 600.0
+custom_styles/bg = SubResource( 4 )
+
+[node name="weatherDayLbl" type="Label" parent="UI/dayContainer"]
+anchor_left = 0.012
+anchor_top = 0.576
+anchor_right = 0.012
+anchor_bottom = 0.576
+margin_left = 0.4
+margin_top = -26.6
+margin_right = 310.4
+margin_bottom = 26.4
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Weather report for day x"
+
+[node name="weatherLbl" type="Label" parent="UI/dayContainer"]
+anchor_left = 0.012
+anchor_top = 0.627
+anchor_right = 0.014
+anchor_bottom = 0.627
+margin_left = 1.4
+margin_top = -26.2
+margin_right = 309.8
+margin_bottom = 2.79999
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "weather"
+
+[node name="sunny" type="Sprite" parent="UI/dayContainer"]
+visible = false
+position = Vector2( 178.5, 205.5 )
+scale = Vector2( 1.34, 1.34 )
+texture = ExtResource( 3 )
+
+[node name="sunnydry" type="Sprite" parent="UI/dayContainer"]
+visible = false
+position = Vector2( 178.5, 205.5 )
+scale = Vector2( 1.34, 1.34 )
+texture = ExtResource( 4 )
+
+[node name="cloudy" type="Sprite" parent="UI/dayContainer"]
+visible = false
+position = Vector2( 178.5, 205.5 )
+scale = Vector2( 1.34, 1.34 )
+texture = ExtResource( 5 )
+
+[node name="price" type="Panel" parent="UI/dayContainer"]
+self_modulate = Color( 1, 1, 1, 0.172549 )
+anchor_left = 0.771
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -191.8
+
+[node name="lblOne" type="Label" parent="UI/dayContainer/price"]
+anchor_left = 0.04
+anchor_top = 0.049
+anchor_right = 0.04
+anchor_bottom = 0.049
+margin_left = -9.53674e-07
+margin_top = -26.4
+margin_right = 305.0
+margin_bottom = 26.6
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "xxxxx
+xxxxx"
+autowrap = true
+
+[node name="lblTwo" type="Label" parent="UI/dayContainer/price"]
+anchor_left = 0.04
+anchor_top = 0.149
+anchor_right = 0.04
+anchor_bottom = 0.149
+margin_left = -9.53674e-07
+margin_top = -26.4
+margin_right = 305.0
+margin_bottom = 26.6
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "xxxxx
+xxxxx"
+autowrap = true
+
+[node name="lblThree" type="Label" parent="UI/dayContainer/price"]
+anchor_left = 0.029
+anchor_top = 0.249
+anchor_right = 0.029
+anchor_bottom = 0.249
+margin_left = 0.125
+margin_top = -12.4
+margin_right = 305.125
+margin_bottom = 12.6
+rect_pivot_offset = Vector2( 131, 155 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 10 )
+text = "How many glasses to make?"
+autowrap = true
+
+[node name="makeTxt" type="TextEdit" parent="UI/dayContainer/price"]
+anchor_left = 0.027
+anchor_top = 0.317
+anchor_right = 0.027
+anchor_bottom = 0.317
+margin_left = -0.125
+margin_top = -23.2
+margin_right = 143.875
+margin_bottom = 15.8
+rect_pivot_offset = Vector2( 132, 125 )
+custom_fonts/font = SubResource( 11 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
+text = "0"
+caret_blink = true
+
+[node name="lblFour" type="Label" parent="UI/dayContainer/price"]
+anchor_left = 0.029
+anchor_top = 0.249
+anchor_right = 0.029
+anchor_bottom = 0.249
+margin_left = 0.125
+margin_top = 76.6
+margin_right = 305.125
+margin_bottom = 101.6
+rect_pivot_offset = Vector2( 131, 155 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 10 )
+text = "How many advert signs to make?"
+autowrap = true
+
+[node name="lblFive" type="Label" parent="UI/dayContainer/price"]
+anchor_left = 0.029
+anchor_top = 0.249
+anchor_right = 0.029
+anchor_bottom = 0.249
+margin_left = 153.125
+margin_top = 113.6
+margin_right = 289.125
+margin_bottom = 137.6
+rect_pivot_offset = Vector2( 131, 155 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 12 )
+text = "XXXX"
+autowrap = true
+
+[node name="advertTxt" type="TextEdit" parent="UI/dayContainer/price"]
+anchor_left = 0.027
+anchor_top = 0.317
+anchor_right = 0.027
+anchor_bottom = 0.317
+margin_left = -0.124999
+margin_top = 65.8
+margin_right = 143.875
+margin_bottom = 104.8
+rect_pivot_offset = Vector2( 132, 125 )
+custom_fonts/font = SubResource( 11 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
+text = "0"
+caret_blink = true
+
+[node name="button" type="Button" parent="UI/dayContainer/price"]
+anchor_left = 0.04
+anchor_top = 0.963
+anchor_right = 0.04
+anchor_bottom = 0.963
+margin_left = -9.53674e-07
+margin_top = -28.8
+margin_right = 160.0
+margin_bottom = 10.2
+text = "OK"
+
+[node name="startUpTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+__meta__ = {
+"_editor_description_": "idk"
+}
+
+[connection signal="pressed" from="UI/dayContainer/price/button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="startUpTimer" to="." method="_on_startUpTimer_timeout"]
