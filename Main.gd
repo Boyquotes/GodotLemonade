@@ -25,6 +25,7 @@ func startDay():
 	$UI/dayContainer/price/lblOne.text = "On day " + str(Global.currDay) + ", the cost to make lemonade is: " + str(Global.costToMake)
 	$UI/dayContainer/price/lblTwo.text = "Assets: $" + str(Global.assets)
 	$UI/dayContainer/weatherDayLbl.text = "weather report for day " + str(Global.currDay)
+	$UI/dayContainer/price/lblFive.text = "$" + str(Global.advertCost) + " each"
 	$UI/dayContainer/weatherLbl.text = Global.weatherTypes[randi()%3+0]
 	if $UI/dayContainer/weatherLbl.text == "sunny":
 		$UI/dayContainer/sunny.visible = true
@@ -34,7 +35,7 @@ func startDay():
 		$UI/dayContainer/cloudy.visible = true
 
 func _on_button_pressed():
-		Global.cost = Global.costToMake + int($UI/dayContainer/price/makeTxt.text)
+		Global.cost = Global.costToMake * int($UI/dayContainer/price/makeTxt.text)
 		print(Global.cost)
 		finaceReport()
 
