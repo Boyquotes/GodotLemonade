@@ -17,6 +17,7 @@ func _process(_delta):
 		$UI/dayContainer/price/button.disabled = false
 
 func startDay():
+	Global.profit = 0
 	Global.currDay += 1
 	$UI/dayContainer/sunny.visible = false
 	$UI/dayContainer/sunnydry.visible = false
@@ -34,8 +35,6 @@ func startDay():
 		$UI/dayContainer/cloudy.visible = true
 
 func _on_button_pressed():
-		if $UI/dayContainer/price/advertTxt.text <= "0":
-			Global.cost = Global.costToMake * int($UI/dayContainer/price/makeTxt.text)
 		Global.cost = Global.costToMake * int($UI/dayContainer/price/makeTxt.text) + int($UI/dayContainer/price/advertTxt.text) * Global.advertCost
 		Global.sellPrice = float($UI/dayContainer/price/costTxt.text) * int($UI/dayContainer/price/makeTxt.text)
 		print(Global.cost)
@@ -44,21 +43,45 @@ func _on_button_pressed():
 
 func finaceReport():
 	Global.assets -= Global.cost
-	if $UI/dayContainer/weatherLbl.text == "sunny and dry":
-		if Global.sellPrice >= 0.90:
-			Global.sellPrice = rand_range(0.10,0.45)
-			Global.assets += Global.sellPrice - randi()%3+1
+	if $UI/dayContainer/weatherLbl.text == "sunny and dry" || $UI/dayContainer/weatherLbl.text == "sunny":
+		if Global.sellPrice <= 0.15:
+			Global.sellPrice = rand_range(0.02,0.15)
+			Global.glassesSold = randi()%int($UI/dayContainer/price/makeTxt.text)+3
+			Global.assets += Global.sellPrice * int($UI/dayContainer/price/makeTxt.text) - randi()%3+1
+		else:
+			Global.sellPrice = float($UI/dayContainer/price/costTxt.text)
+			Global.glassesSold = randi()%int($UI/dayContainer/price/makeTxt.text)+7
+			Global.assets += Global.sellPrice * int($UI/dayContainer/price/makeTxt.text) - randi()%4+1
+		showStats()
+	else:
+		Global.sellPrice = rand_range(0.01, 0.05)
 	print(Global.sellPrice)
+	Global.glassesSold = randi()%int($UI/dayContainer/price/makeTxt.text)+5
+	if Global.glassesSold != int($UI/dayContainer/price/makeTxt.text):
+		Global.profit -= rand_range(0.01, 0.05)
 	print(str(Global.preSell) + "yyy")
-	Global.profit = Global.assets - Global.preSell
+	if int($UI/dayContainer/price/makeTxt.text) <= 0:
+		Global.profit = 0
+	else:
+		Global.profit = Global.assets - Global.preSell
 	print(Global.profit)
-	$UI/dayContainer/financePanel/lblTwo.text = "Profit: $" + str(Global.profit)
-	$UI/dayContainer/financePanel/lblFive.text = "Assets: $" + str(Global.assets)
-	$UI/dayContainer/price.visible = false
-	$UI/dayContainer/financePanel.visible = true
+	Global.assets += Global.sellPrice * int($UI/dayContainer/price/makeTxt.text) - randi()%6+1
+	showStats()
 	if Global.assets <= 0:
 		handleBankru()
 
+func showStats():
+	if Global.glassesSold > int($UI/dayContainer/price/makeTxt.text):
+		Global.glassesSold = int($UI/dayContainer/price/makeTxt.text)
+	if int($UI/dayContainer/price/advertTxt.text) >= 1:
+		Global.glassesSold = int($UI/dayContainer/price/makeTxt.text)
+	$UI/dayContainer/financePanel/lblTwo.text = "Profit: $" + str(Global.profit)
+	$UI/dayContainer/financePanel/lblFive.text = "Assets: $" + str(Global.assets)
+	$UI/dayContainer/financePanel/lblThree.text = "Glasses made: " + str($UI/dayContainer/price/makeTxt.text)
+	$UI/dayContainer/financePanel/lblFour.text = "Glasses sold: " + str(Global.glassesSold)
+	$UI/dayContainer/price.visible = false
+	$UI/dayContainer/financePanel.visible = true
+	
 func _on_quitBtn_pressed():
 	get_tree().quit()
 

@@ -256,6 +256,7 @@ rect_pivot_offset = Vector2( 132, 125 )
 custom_fonts/font = SubResource( 11 )
 custom_styles/focus = SubResource( 8 )
 custom_styles/normal = SubResource( 9 )
+text = "0"
 caret_blink = true
 
 [node name="lblFour" type="Label" parent="UI/dayContainer/price"]
@@ -301,6 +302,7 @@ rect_pivot_offset = Vector2( 132, 125 )
 custom_fonts/font = SubResource( 11 )
 custom_styles/focus = SubResource( 8 )
 custom_styles/normal = SubResource( 9 )
+text = "0"
 caret_blink = true
 
 [node name="lblSix" type="Label" parent="UI/dayContainer/price"]
@@ -315,7 +317,7 @@ margin_bottom = 183.6
 rect_pivot_offset = Vector2( 131, 155 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 10 )
-text = "How much will each class cost? (cents)"
+text = "How much will each glass cost?"
 autowrap = true
 
 [node name="lblSeven" type="Label" parent="UI/dayContainer/price"]
@@ -346,6 +348,7 @@ rect_pivot_offset = Vector2( 132, 125 )
 custom_fonts/font = SubResource( 11 )
 custom_styles/focus = SubResource( 8 )
 custom_styles/normal = SubResource( 9 )
+text = "0.00"
 caret_blink = true
 
 [node name="button" type="Button" parent="UI/dayContainer/price"]
