@@ -47,11 +47,17 @@ func finaceReport():
 	if $UI/dayContainer/weatherLbl.text == "sunny and dry":
 		if Global.sellPrice >= 0.90:
 			Global.sellPrice = rand_range(0.10,0.45)
-			print(Global.sellPrice)
 			Global.assets += Global.sellPrice - randi()%3+1
+	print(Global.sellPrice)
+	print(str(Global.preSell) + "yyy")
+	Global.profit = Global.assets - Global.preSell
+	print(Global.profit)
+	$UI/dayContainer/financePanel/lblTwo.text = "Profit: $" + str(Global.profit)
+	$UI/dayContainer/financePanel/lblFive.text = "Assets: $" + str(Global.assets)
+	$UI/dayContainer/price.visible = false
+	$UI/dayContainer/financePanel.visible = true
 	if Global.assets <= 0:
 		handleBankru()
-	startDay()
 
 func _on_quitBtn_pressed():
 	get_tree().quit()
@@ -60,3 +66,8 @@ func handleBankru():
 	$UI/dayContainer.visible = false
 	$UI/bankruptPanel.visible = true
 	$UI/bankruptPanel/assetLbl.text = "Assets: $" + str(Global.assets)
+
+func _on_continBtn_pressed():
+	$UI/dayContainer/price.visible = true
+	$UI/dayContainer/financePanel.visible = false
+	startDay()

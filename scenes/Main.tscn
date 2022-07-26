@@ -359,6 +359,103 @@ margin_right = 160.0
 margin_bottom = 10.2
 text = "OK"
 
+[node name="financePanel" type="Panel" parent="UI/dayContainer"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.172549 )
+anchor_left = 0.771
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -191.8
+
+[node name="lblOne" type="Label" parent="UI/dayContainer/financePanel"]
+anchor_left = 0.511
+anchor_top = 0.049
+anchor_right = 0.511
+anchor_bottom = 0.049
+margin_left = -190.625
+margin_top = -26.4
+margin_right = 183.375
+margin_bottom = 26.6
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Finance report"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="lblTwo" type="Label" parent="UI/dayContainer/financePanel"]
+anchor_left = 0.016
+anchor_top = 0.152
+anchor_right = 0.016
+anchor_bottom = 0.152
+margin_left = 4.76837e-07
+margin_top = -26.2
+margin_right = 374.0
+margin_bottom = 26.8
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "profit: xx.xx"
+valign = 1
+autowrap = true
+
+[node name="lblThree" type="Label" parent="UI/dayContainer/financePanel"]
+anchor_left = 0.016
+anchor_top = 0.214
+anchor_right = 0.515
+anchor_bottom = 0.214
+margin_left = 4.76837e-07
+margin_top = -26.4
+margin_right = 186.875
+margin_bottom = 26.6
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Glasses made: xx.xx"
+valign = 1
+autowrap = true
+
+[node name="lblFour" type="Label" parent="UI/dayContainer/financePanel"]
+anchor_left = 0.016
+anchor_top = 0.282
+anchor_right = 0.016
+anchor_bottom = 0.282
+margin_left = 4.76837e-07
+margin_top = -26.2
+margin_right = 374.0
+margin_bottom = 26.8
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Glasses sold: xx.xx"
+valign = 1
+autowrap = true
+
+[node name="lblFive" type="Label" parent="UI/dayContainer/financePanel"]
+anchor_left = 0.016
+anchor_top = 0.282
+anchor_right = 0.016
+anchor_bottom = 0.282
+margin_left = 4.76837e-07
+margin_top = 89.8
+margin_right = 374.0
+margin_bottom = 142.8
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "profit: xx.xx"
+valign = 1
+autowrap = true
+
+[node name="continBtn" type="Button" parent="UI/dayContainer/financePanel"]
+anchor_left = 0.5
+anchor_top = 0.558
+anchor_right = 0.5
+anchor_bottom = 0.558
+margin_left = -49.5
+margin_top = -18.8
+margin_right = 49.5
+margin_bottom = 19.2
+rect_pivot_offset = Vector2( 66, 22.5 )
+custom_fonts/font = SubResource( 13 )
+text = "CONTINUE"
+
 [node name="bankruptPanel" type="Panel" parent="UI"]
 visible = false
 margin_right = 800.0
@@ -395,3 +492,4 @@ text = "ASSETS:"
 [connection signal="pressed" from="UI/startUp/playBtn" to="." method="_on_playBtn_pressed"]
 [connection signal="pressed" from="UI/startUp/quitBtn" to="." method="_on_quitBtn_pressed"]
 [connection signal="pressed" from="UI/dayContainer/price/button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="UI/dayContainer/financePanel/continBtn" to="." method="_on_continBtn_pressed"]
