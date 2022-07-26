@@ -6,14 +6,18 @@ func _ready():
 	$UI/dayContainer.visible = false
 
 func _on_playBtn_pressed():
-	$UI/startUp.queue_free() # removes startup nodes, after 8 secs
+	$UI/startUp.queue_free() # removes startup nodes (forgot to include more comments)
 	$UI/dayContainer.visible = true
 	startDay()
-	
+
+func _process(_delta):
+	if $UI/dayContainer/price/advertTxt.text.empty() || $UI/dayContainer/price/costTxt.text.empty() || $UI/dayContainer/price/makeTxt.text.empty():
+		$UI/dayContainer/price/button.disabled = true
+	else:
+		$UI/dayContainer/price/button.disabled = false
+
 func startDay():
-	Global.advertCost = 2.00
 	Global.currDay += 1
-	$UI/dayContainer/price/makeTxt.text = "0"
 	$UI/dayContainer/sunny.visible = false
 	$UI/dayContainer/sunnydry.visible = false
 	$UI/dayContainer/cloudy.visible = false
@@ -33,11 +37,18 @@ func _on_button_pressed():
 		if $UI/dayContainer/price/advertTxt.text <= "0":
 			Global.cost = Global.costToMake * int($UI/dayContainer/price/makeTxt.text)
 		Global.cost = Global.costToMake * int($UI/dayContainer/price/makeTxt.text) + int($UI/dayContainer/price/advertTxt.text) * Global.advertCost
+		Global.sellPrice = float($UI/dayContainer/price/costTxt.text) * int($UI/dayContainer/price/makeTxt.text)
 		print(Global.cost)
+		print(Global.sellPrice)
 		finaceReport()
 
 func finaceReport():
 	Global.assets -= Global.cost
+	if $UI/dayContainer/weatherLbl.text == "sunny and dry":
+		if Global.sellPrice >= 0.90:
+			Global.sellPrice = rand_range(0.10,0.45)
+			print(Global.sellPrice)
+			Global.assets += Global.sellPrice - randi()%3+1
 	if Global.assets <= 0:
 		handleBankru()
 	startDay()
