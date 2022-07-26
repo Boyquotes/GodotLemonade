@@ -5,18 +5,13 @@ func _ready():
 	$UI/startUp.visible = true
 	$UI/dayContainer.visible = false
 
-func _process(_delta):
-	if $UI/dayContainer/price/makeTxt.text > str(Global.assets):
-		$UI/dayContainer/price/button.disabled = true
-	else:
-		$UI/dayContainer/price/button.disabled = false
-		
 func _on_playBtn_pressed():
 	$UI/startUp.queue_free() # removes startup nodes, after 8 secs
 	$UI/dayContainer.visible = true
 	startDay()
 	
 func startDay():
+	Global.advertCost = 2.00
 	Global.currDay += 1
 	$UI/dayContainer/price/makeTxt.text = "0"
 	$UI/dayContainer/sunny.visible = false
@@ -35,14 +30,22 @@ func startDay():
 		$UI/dayContainer/cloudy.visible = true
 
 func _on_button_pressed():
-		Global.cost = Global.costToMake * int($UI/dayContainer/price/makeTxt.text)
+		if $UI/dayContainer/price/advertTxt.text <= "0":
+			Global.cost = Global.costToMake * int($UI/dayContainer/price/makeTxt.text)
+		Global.cost = Global.costToMake * int($UI/dayContainer/price/makeTxt.text) + int($UI/dayContainer/price/advertTxt.text) * Global.advertCost
 		print(Global.cost)
 		finaceReport()
 
 func finaceReport():
 	Global.assets -= Global.cost
-	Global.assets -= Global.cost
+	if Global.assets <= 0:
+		handleBankru()
 	startDay()
 
 func _on_quitBtn_pressed():
 	get_tree().quit()
+
+func handleBankru():
+	$UI/dayContainer.visible = false
+	$UI/bankruptPanel.visible = true
+	$UI/bankruptPanel/assetLbl.text = "Assets: $" + str(Global.assets)
