@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://fonts/LEMONMILK-Regular.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
@@ -15,6 +15,10 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 18
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=13]
 use_filter = true
 font_data = ExtResource( 1 )
 
@@ -63,7 +67,6 @@ margin_right = 800.0
 margin_bottom = 600.0
 
 [node name="startUp" type="ItemList" parent="UI"]
-visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -399.0
@@ -97,7 +100,34 @@ text = "Hi! welcome to lemonsville, california!
 in this small town, you are in charge of running your own lemonade stand. you will have to calculate how much glasses to make, advertising, and how much to sell each glass for.."
 autowrap = true
 
+[node name="playBtn" type="Button" parent="UI/startUp"]
+anchor_left = 0.5
+anchor_top = 0.773
+anchor_right = 0.5
+anchor_bottom = 0.773
+margin_left = -42.0
+margin_top = -18.829
+margin_right = 42.0
+margin_bottom = 19.171
+rect_pivot_offset = Vector2( 66, 22.5 )
+custom_fonts/font = SubResource( 13 )
+text = "PLAY"
+
+[node name="quitBtn" type="Button" parent="UI/startUp"]
+anchor_left = 0.5
+anchor_top = 0.921
+anchor_right = 0.5
+anchor_bottom = 0.921
+margin_left = -42.0
+margin_top = -19.033
+margin_right = 42.0
+margin_bottom = 18.967
+rect_pivot_offset = Vector2( 66, 22.5 )
+custom_fonts/font = SubResource( 13 )
+text = "QUIT"
+
 [node name="dayContainer" type="ItemList" parent="UI"]
+visible = false
 margin_right = 800.0
 margin_bottom = 600.0
 custom_styles/bg = SubResource( 4 )
@@ -271,13 +301,6 @@ margin_right = 160.0
 margin_bottom = 10.2
 text = "OK"
 
-[node name="startUpTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-autostart = true
-__meta__ = {
-"_editor_description_": "idk"
-}
-
+[connection signal="pressed" from="UI/startUp/playBtn" to="." method="_on_playBtn_pressed"]
+[connection signal="pressed" from="UI/startUp/quitBtn" to="." method="_on_quitBtn_pressed"]
 [connection signal="pressed" from="UI/dayContainer/price/button" to="." method="_on_button_pressed"]
-[connection signal="timeout" from="startUpTimer" to="." method="_on_startUpTimer_timeout"]

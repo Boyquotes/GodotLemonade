@@ -10,8 +10,8 @@ func _process(_delta):
 		$UI/dayContainer/price/button.disabled = true
 	else:
 		$UI/dayContainer/price/button.disabled = false
-
-func _on_startUpTimer_timeout():
+		
+func _on_playBtn_pressed():
 	$UI/startUp.queue_free() # removes startup nodes, after 8 secs
 	$UI/dayContainer.visible = true
 	startDay()
@@ -41,4 +41,8 @@ func _on_button_pressed():
 
 func finaceReport():
 	Global.assets -= Global.cost
+	Global.assets -= Global.cost
 	startDay()
+
+func _on_quitBtn_pressed():
+	get_tree().quit()
